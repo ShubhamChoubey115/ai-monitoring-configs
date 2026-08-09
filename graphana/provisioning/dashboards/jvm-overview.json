@@ -1,1 +1,60 @@
-
+{
+  "id": null,
+  "title": "JVM Overview",
+  "tags": ["jvm", "spring"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "Heap Memory",
+      "targets": [
+        {
+          "expr": "jvm_memory_used_bytes{area=\"heap\"}",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Non-Heap Memory",
+      "targets": [
+        {
+          "expr": "jvm_memory_used_bytes{area=\"nonheap\"}",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "GC Pause Duration",
+      "targets": [
+        {
+          "expr": "rate(jvm_gc_pause_seconds_sum[5m])",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Thread States",
+      "targets": [
+        {
+          "expr": "jvm_threads_states_threads",
+          "legendFormat": "{{application}} {{state}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Class Loading",
+      "targets": [
+        {
+          "expr": "jvm_classes_loaded_classes",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    }
+  ]
+}
