@@ -15,3 +15,11 @@ spring:
           uri: lb://CONFIG-SERVICE
           predicates:
             - Path=/config/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
