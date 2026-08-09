@@ -1,1 +1,50 @@
-
+{
+  "id": null,
+  "title": "Service Health",
+  "tags": ["health", "spring"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "stat",
+      "title": "Service Availability",
+      "targets": [
+        {
+          "expr": "up",
+          "legendFormat": "{{job}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Uptime",
+      "targets": [
+        {
+          "expr": "process_uptime_seconds",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Error Rate",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count{status!~\"2..\"}[5m])",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Spring Boot Info",
+      "targets": [
+        {
+          "expr": "spring_boot_info",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    }
+  ]
+}
