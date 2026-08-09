@@ -1,1 +1,60 @@
-
+{
+  "id": null,
+  "title": "Spring Boot Metrics",
+  "tags": ["spring", "boot", "metrics"],
+  "timezone": "browser",
+  "schemaVersion": 36,
+  "version": 1,
+  "panels": [
+    {
+      "type": "graph",
+      "title": "HTTP Request Throughput",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count[1m])",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "95th Percentile Latency",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_server_requests_seconds_bucket[5m])) by (le, application))",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "Error Rate",
+      "targets": [
+        {
+          "expr": "rate(http_server_requests_seconds_count{status!~\"2..\"}[5m])",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "JVM Memory Usage",
+      "targets": [
+        {
+          "expr": "jvm_memory_used_bytes",
+          "legendFormat": "{{application}} {{area}}"
+        }
+      ]
+    },
+    {
+      "type": "graph",
+      "title": "CPU Usage",
+      "targets": [
+        {
+          "expr": "system_cpu_usage",
+          "legendFormat": "{{application}}"
+        }
+      ]
+    }
+  ]
+}
