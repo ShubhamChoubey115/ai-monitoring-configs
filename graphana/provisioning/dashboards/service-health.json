@@ -4,7 +4,6 @@
   "tags": ["health", "spring"],
   "timezone": "browser",
   "schemaVersion": 36,
-
   "version": 1,
   "panels": [
     {
